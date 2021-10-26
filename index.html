@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snipcart demo</title>
+  
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="content">
+      <button class="snipcart-customer-signin">My account</button>
+      <button class="snipcart-checkout">
+        <img src="./cart.svg"/>
+        <p>
+          (<span class="snipcart-items-count">0</span>)
+        </p>
+        <span class="snipcart-total-price">$0.00</span>
+      </button>
+    </div>
+  </header>
+
+  
+  <div class="products-grid">
+
+    <div class="product">
+      <img src="https://res.cloudinary.com/tomeczek123/image/upload/v1635253401/starry-night_nrjfal.jpg" alt="" class="product__image"> 
+      <div class="product__content">
+        <h2 class="product__title">Starry Night</h2> 
+        <p class="product__description">High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh.</p>
+        <div class="product__summary">
+          <div>
+            <label for="quantity">QUANTITY</label> 
+            <input type="number" name="quantity" id="quantity" value="1" min="1">
+          </div>
+          <div>
+            <label for="format">FORMAT</label> 
+            <select name="format" id="format">
+              <option value="physical">Physical copy</option>
+              <option value="digital">Digital copy (.jpg)</option>
+            </select>
+          </div>
+          <div class="product__price">$79.95</div>
+          <button 
+            id="starry-night" 
+            data-item-id="starry-night" 
+            data-item-price="79.95" 
+            data-item-url="/" 
+            data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." 
+            data-item-image="https://res.cloudinary.com/tomeczek123/image/upload/v1635253401/starry-night_nrjfal.jpg" 
+            data-item-name="Starry Night" 
+            data-item-quantity="1" 
+            data-item-custom1-name="Frame color" 
+            data-item-custom1-options="Black|Blue|Glod[+35.00]"
+            data-item-custom1-required="true"
+            data-item-custom2-name="Long message"
+            data-item-custom2-type="textarea"
+
+
+            class="product__button snipcart-add-item">Add to cart</button> 
+          <button 
+            id='starry-night-digital'
+            data-item-id="starry-night-digital" 
+            data-item-price="29.75" 
+            data-item-url="/" 
+            data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." 
+            data-item-image="https://res.cloudinary.com/tomeczek123/image/upload/v1635253401/starry-night_nrjfal.jpg" 
+            data-item-name="Starry Night (.jpg)" 
+            data-item-quantity="1" 
+            data-item-file-guid="09e589c7-3d18-4c2e-9cee-4f447e9f054a"
+            class="product__button snipcart-add-item product__button--hide">Add to cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="https://res.cloudinary.com/tomeczek123/image/upload/v1635255520/painting_nuyqww.jpg" alt="" class="product__image"> 
+      <div class="product__content">
+        <h2 class="product__title">Magazine subscription</h2> 
+        <p class="product__description">Subscribe to our painter's magazine. You can opt-in for a weekly or monthly subscription.</p>
+        <div class="subscription__summary">
+          <div class="subscription__price">$20.00 / month</div>
+          <button 
+            data-item-id="magazine-subscription" 
+            data-item-price="20.00" 
+            data-item-url="/" 
+            data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." 
+            data-item-image="https://res.cloudinary.com/tomeczek123/image/upload/v1635255520/painting_nuyqww.jpg" 
+            data-item-name="Magazine Subscription" 
+
+            data-plan1-name="Monthly subscription"
+            data-plan1-id="magazine-monthly-plan"
+            data-plan1-frequency="monthly"
+            data-plan1-interval="1"
+            data-item-plan1-price="20"
+            data-item-selected-plan="magazine-monthly-plan" 
+            data-plan2-name="Weekly subscription" 
+            data-plan2-id="magazine-weekly-plan" 
+            data-plan2-frequency="weekly" 
+            data-plan2-interval="1" 
+            data-item-plan2-price="10"
+            class="product__button snipcart-add-item">Subscribe</button> 
+         
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <script>
+    const button = document.querySelector('#starry-night');
+    const buttonDigital = document.querySelector('#starry-night-digital');
+
+    const select = document.querySelector('#format')
+    select.addEventListener('change', (e) => {
+      if(e.target.value === 'physical') {
+        buttonDigital.classList.add('product__button--hide');
+        button.classList.remove('product__button--hide');
+      } else {
+        buttonDigital.classList.remove('product__button--hide');
+        button.classList.add('product__button--hide');
+      }
+    })
+    </script>
+
+  <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
+  <div id="snipcart" data-config-modal-style="side" data-api-key="NDViNmQ3YjMtNWJmYy00MWIxLWIxNjMtMzAwOTBmZDk0Mjc3NjM3NzA4NDc4Mjk2NzgzODA2" hidden></div>
+</body>
+</html>

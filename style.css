@@ -1,0 +1,129 @@
+* {
+  font-family: Muli,sans-serif;
+}
+.header {
+  border-bottom: 1px solid lightgray;
+}
+.header .content {
+  display: flex;
+  height: 50px;
+  align-items: center;
+
+}
+.header button {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: black;
+  cursor: pointer;
+  gap: 15px;
+}
+.header button + button {
+  margin-left: 30px;
+}
+.header button img {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.products-grid, .content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1300px;
+  padding: 40px;
+}
+.products-grid {
+  margin: 100px auto;
+}
+.product {
+  margin-bottom: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.product h2 {
+  font-size: 40px;
+}
+.product p {
+  font-size: 20px;
+}
+.product__content {
+  width: 50%;
+}
+.product:nth-child(odd) img {
+  order: 1;
+}
+.product img {
+  width: 50%;
+  max-width: 500px;
+  max-height: 400px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 8px;
+  transform: perspective(650px) rotate(5deg) rotateX(-2.5deg) rotateY(-15deg) scale(.8) translateX(30px);
+  box-shadow: 30px 30px 50px rgb(0 0 0 / 10%);
+}
+.product label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b6b6b;
+}
+.product input,
+.product select {
+  -webkit-appearance: none;
+  margin-top: 4px;
+  width: 100%;
+  border: 1px solid #eaeaea;
+  padding: 8px 8px 8px 16px;
+  border-radius: 4px;
+}
+
+.product__summary {
+  display: grid;
+  -ms-grid-columns: 75px 175px;
+  grid-template-columns: 75px 175px;
+  gap: 16px;
+  border-radius: 4px;
+}
+.product__price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  white-space: nowrap;
+}
+.product__button {
+  cursor: pointer;
+  -webkit-appearance: none;
+  color: #fff;
+  background-color: #133986;
+  border: 1px solid #113478;
+  border-radius: 3px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 16px 24px;
+  display: block;
+  white-space: nowrap;
+}
+.product__button--hide {
+  display: none;
+}
+
+.subscription__price {
+  font-weight: 700;
+  font-size: 20px;
+  white-space: nowrap;
+  margin-right: 8px;
+  padding-bottom: 16px;
+}
+
