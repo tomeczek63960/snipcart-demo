@@ -15,13 +15,18 @@
 
   <header class="header">
     <div class="content">
+      <select id="currencies">
+        <option value="pln">pln</option>
+        <option value="eur">eur</option>
+        <option value="usd">usd</option>
+      </select>
       <button class="snipcart-customer-signin">My account</button>
       <button class="snipcart-checkout">
         <img src="./assets/cart.svg"/>
         <p>
           (<span class="snipcart-items-count">0</span>)
         </p>
-        <span class="snipcart-total-price">$0.00</span>
+        <span class="snipcart-total-price">0.00</span>
       </button>
     </div>
   </header>
@@ -46,11 +51,12 @@
               <option value="digital">Digital copy (.jpg)</option>
             </select>
           </div>
-          <div class="product__price">$79.95</div>
+          <div class="product__price" id="product__price">$14.55 <br>€23.55,<br> zł71.00</div>
+          <div class="product__price product__price--hide" id="product__price-digital">$4.55 <br>€5.55,<br> zł21.00</div>
           <button 
             id="starry-night" 
             data-item-id="starry-night" 
-            data-item-price="79.95" 
+            data-item-price='{"usd": 14.55, "eur": 23.55, "pln": 71.00}' 
             data-item-url="/" 
             data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." 
             data-item-image="https://res.cloudinary.com/tomeczek123/image/upload/v1635253401/starry-night_nrjfal.jpg" 
@@ -67,7 +73,7 @@
           <button 
             id='starry-night-digital'
             data-item-id="starry-night-digital" 
-            data-item-price="29.75" 
+            data-item-price='{"usd": 4.55, "eur": 5.55, "pln": 21.00}' 
             data-item-url="/" 
             data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." 
             data-item-image="https://res.cloudinary.com/tomeczek123/image/upload/v1635253401/starry-night_nrjfal.jpg" 
@@ -114,23 +120,56 @@
 
   </div>
 
+  <div
+    id="snipcart"
+    data-config-modal-style="side"
+    data-api-key="NDViNmQ3YjMtNWJmYy00MWIxLWIxNjMtMzAwOTBmZDk0Mjc3NjM3NzA4NDc4Mjk2NzgzODA2"
+    hidden></div>
+
+  <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
+
   <script>
     const button = document.querySelector('#starry-night');
     const buttonDigital = document.querySelector('#starry-night-digital');
+    const price = document.querySelector('#product__price');
+    const pirceDigital = document.querySelector('#product__price-digital');
 
     const select = document.querySelector('#format')
     select.addEventListener('change', (e) => {
       if(e.target.value === 'physical') {
         buttonDigital.classList.add('product__button--hide');
         button.classList.remove('product__button--hide');
+        pirceDigital.classList.add('product__price--hide');
+        price.classList.remove('product__price--hide');
       } else {
         buttonDigital.classList.remove('product__button--hide');
         button.classList.add('product__button--hide');
+        pirceDigital.classList.remove('product__price--hide');
+        price.classList.add('product__price--hide');
       }
-    })
-    </script>
+    });
 
-  <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
-  <div id="snipcart" data-config-modal-style="side" data-api-key="NDViNmQ3YjMtNWJmYy00MWIxLWIxNjMtMzAwOTBmZDk0Mjc3NjM3NzA4NDc4Mjk2NzgzODA2" hidden></div>
+  </script>
+
+  <script>
+
+    document.addEventListener('snipcart.ready', () => {
+      const currSelect = document.querySelector("#currencies");
+      currSelect.addEventListener('change', (e)=>{
+
+        Snipcart.api.session.setCurrency(currSelect.value);
+      });
+
+      Snipcart.store.subscribe(updateCurrency);
+    });
+
+    function updateCurrency() {
+      const state = Snipcart.store.getState();
+      const currency = state.cart.currency;
+
+      document.querySelector('#currencies').value = currency;
+    }
+
+  </script>
 </body>
 </html>

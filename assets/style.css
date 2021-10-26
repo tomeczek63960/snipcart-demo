@@ -115,6 +115,7 @@
   display: block;
   white-space: nowrap;
 }
+.product__price--hide,
 .product__button--hide {
   display: none;
 }
