@@ -91,31 +91,11 @@
     id="snipcart"
     data-config-modal-style="side"
     data-api-key="NDViNmQ3YjMtNWJmYy00MWIxLWIxNjMtMzAwOTBmZDk0Mjc3NjM3NzA4NDc4Mjk2NzgzODA2"
-    hidden></div>
+    hidden>
+  </div>
 
   <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script>
-
   <script src="./assets/index.js"></script>
 
-  <script>
-
-    document.addEventListener('snipcart.ready', () => {
-      const currSelect = document.querySelector("#currencies");
-      currSelect.addEventListener('change', (e)=>{
-
-        Snipcart.api.session.setCurrency(currSelect.value);
-      });
-
-      Snipcart.store.subscribe(updateCurrency);
-    });
-
-    function updateCurrency() {
-      const state = Snipcart.store.getState();
-      const currency = state.cart.currency;
-
-      document.querySelector('#currencies').value = currency;
-    }
-
-  </script>
 </body>
 </html>
