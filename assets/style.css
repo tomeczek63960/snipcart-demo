@@ -75,7 +75,8 @@
   color: #6b6b6b;
 }
 .product input,
-.product select {
+.product select,
+select {
   -webkit-appearance: none;
   margin-top: 4px;
   width: 100%;
@@ -83,7 +84,9 @@
   padding: 8px 8px 8px 16px;
   border-radius: 4px;
 }
-
+header select {
+  max-width: 100px;
+}
 .product__summary {
   display: grid;
   -ms-grid-columns: 75px 175px;
